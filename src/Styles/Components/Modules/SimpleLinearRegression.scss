@@ -1,0 +1,141 @@
+.RegressionContainer {
+	position: relative;
+	padding: 30px 10px;
+	min-width: 700px;
+	@media screen and (max-width: 768px) {
+		min-width: 350px;
+	}
+	max-width: 95%;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	.fa-arrow-left {
+		position: absolute;
+		left: 0;
+		top: 5px;
+		background: blue;
+	}
+	.inputContainer {
+		min-height: 50vh;
+		background-color: white;
+		min-width: 700px;
+		@media screen and (max-width: 768px) {
+			min-width: 340px;
+		}
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		flex-direction: column;
+		color: black;
+		padding: 10px;
+		.inputs {
+			margin: 20px 0;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			textarea {
+				min-width: 500px;
+				@media screen and (max-width: 768px) {
+					min-width: 330px;
+				}
+				margin: 5px 0;
+				border: 1px solid gray;
+				min-height: 50px;
+				padding: 5px;
+			}
+			input{
+				border: 1px solid gray;
+				padding: 5px;
+			}
+		}
+		.info {
+			display: flex;
+			justify-content: center;
+			// align-items: center;
+			flex-wrap: wrap;
+			> div {
+				// border: 1px solid gray;
+				margin: 20px;
+				li {
+					display: flex;
+					align-items: center;
+				}
+			}
+		}
+	}
+	.OutputContainer {
+		min-height: 50vh;
+		background-color: white;
+		min-width: 700px;
+		@media screen and (max-width: 768px) {
+			min-width: 350px;
+		}
+		overflow-x: scroll;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		flex-direction: column;
+		color: black;
+		padding: 10px;
+		margin: 10px;
+		.TableScrollbar{
+			width: 900px;
+			@media screen and (max-width: 768px) {
+				width: 360px;
+			}
+			overflow-x: scroll;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			
+		}
+		table {
+			width: 800px;
+			border: 1px solid gray;
+			tr {
+				th,
+				td {
+					font-size: 0.71em;
+					min-width: 50px;
+					border: 1px solid gray;
+					text-align: center;
+					padding: 5px 1px;
+				}
+				th {
+					color: blue;
+					font-size: 0.8em;
+					@media screen and (max-width: 768px) {
+						font-size: 0.7em;
+						
+					}
+				}
+                td{
+                    font-weight: bold;
+                }
+			}
+		}
+        .calculations{
+
+
+            .operation{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+				input{
+					min-width: 250px;
+					border: 1px solid gray;
+					padding: 10px;
+				}
+				button{
+					background: blue;
+					color: white;
+					padding: 5px 20px;
+					margin: 5px;
+				}
+            }
+        }
+	}
+}

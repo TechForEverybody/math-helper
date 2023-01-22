@@ -1,0 +1,83 @@
+#homePageContainer {
+	min-height: 100vh;
+	.landingPageImage {
+		min-height: 85vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		color: black;
+		font-size: 1.9em;
+		div {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			background: rgb(255, 255, 255);
+			padding: 50px 20px;
+			border-radius: 2px;
+		}
+
+		button {
+			padding: 5px 40px;
+			font-size: 35px;
+			margin: 20px;
+			background: blue;
+			border-radius: 10px;
+			color: white;
+			box-shadow: 0px 0px 15px green;
+		}
+		button:hover {
+			transform: scale(1.2);
+			background-color: green;
+		}
+	}
+	.toolsList {
+		// background-color: white;
+		min-height: 60vh;
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+}
+
+.ToolCard {
+	width: 250px;
+	min-height: 150px;
+	background-color: transparent;
+	background: url("https://img.freepik.com/free-photo/design-space-paper-textured-background_53876-42312.jpg?w=2000");
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: black;
+	padding: 20px;
+	transform: rotate(-5deg);
+	position: relative;
+	cursor: pointer;
+	margin: 30px 20px;
+	text-align: center;
+	.pin {
+		position: absolute;
+		width: 15px;
+		height: 15px;
+		background: blue;
+		border-radius: 50%;
+	}
+	.pin1{
+		top: 5px;
+		left: 10px;
+	}
+	.pin2{
+		top: 5px;
+		right: 10px;
+	}
+	.pin3{
+		bottom: 5px;
+		left: 10px;
+	}
+	.pin4{
+		bottom: 5px;
+		right: 10px;
+	}
+}
