@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import 'katex/dist/katex.min.css';
 import { BlockMath, InlineMath } from 'react-katex';
-
+import Chart from "react-apexcharts";
 
 function SimpleLinearRegression(object) {
     let [independentValues, updateIndependentValues] = useState("")
     let [dependentValues, updateDependentValues] = useState("")
-    let [numberOfDecimals,updateNumberOfDecimals]=useState(4)
+    let [numberOfDecimals, updateNumberOfDecimals] = useState(4)
     let [independent, updateIndependent] = useState([])
     let [dependent, updateDependent] = useState([])
     let [x, update_x] = useState([])
@@ -33,6 +33,11 @@ function SimpleLinearRegression(object) {
         estimated_sum: 0,
         error_sum: 0
     })
+    let [line_of_regression_data, update_line_of_regression_data] = useState({
+        x: [],
+        y: []
+    })
+
     function checkInput(x, y) {
         x = x.trim().replace(/[,\n]+$|^[,\n]+/, "")
         y = y.trim().replace(/[,\n]+$|^[,\n]+/, "")
@@ -127,11 +132,21 @@ function SimpleLinearRegression(object) {
             estimated_sum,
             error_sum
         })
+        let l_x = [0], l_y = []
+        l_y.push(intercept_)
+        let value = 10
+        l_x.push(value)
+        l_y.push(slope_ * value + intercept_)
+        update_line_of_regression_data({
+            x: l_x,
+            y: l_y
+        })
     }
     return (
         <div className='RegressionContainer'>
             <i className="fa fa-arrow-left" onClick={() => object.goBack()}> Go back</i>
             <div className="inputContainer">
+
                 <h1>Simple Linear Regression</h1>
 
                 <p className="info">
@@ -190,14 +205,14 @@ function SimpleLinearRegression(object) {
                         checkInput(independentValues, event.target.value)
                     }} name="dependent" id="dependent" ></textarea>
                     <label htmlFor="decimals">Change Number of Decimals (Default is 4, minimum 0 and maximum 5)</label>
-                    <input type="number" max={10} min={0} value={numberOfDecimals} onChange={(event)=>{
-                        if (parseInt(event.target.value)<0 || parseInt(event.target.value)>5 ) {
+                    <input type="number" max={10} min={0} value={numberOfDecimals} onChange={(event) => {
+                        if (parseInt(event.target.value) < 0 || parseInt(event.target.value) > 5) {
                             window.alert("Why are you choosing this 😡")
                             updateNumberOfDecimals(0)
                         } else {
                             updateNumberOfDecimals(parseInt(event.target.value))
                         }
-                        }} name="decimal" id="decimal " />
+                    }} name="decimal" id="decimal " />
                     <p>Enter values with space separated,comma separated or new line separated (of your choice)</p>
                     <p>We uses  Karl Pearson Coefficient of Correlation</p>
                     <p>All Values will be adjusted to 4 decimal places</p>
@@ -323,6 +338,48 @@ function SimpleLinearRegression(object) {
                                 <div className="operation">
                                     <input type="number" name="number" value={input} onChange={(event) => updateInput(event.target.value)} id="number" placeholder='Enter Value(X)' />
                                     <button>Estimated value is: {(slope * input + intercept).toFixed(numberOfDecimals)}</button>
+                                </div>
+                                <hr />
+                                <h4>Graphical Representation of Values</h4>
+                                <div>
+                                    <Chart
+                                        options={{
+                                            xaxis: {
+                                                categories: independent
+                                            }
+                                        }}
+                                        series={[
+                                            {
+                                                name: 'Original Data',
+                                                data: dependent
+                                            },
+                                            {
+                                                name: 'Estimated Values',
+                                                data: estimated
+                                            }
+                                        ]}
+                                        type="line"
+                                        width="700"
+                                    />
+                                </div>
+                                <hr />
+                                <h4>Line of Regression</h4>
+                                <div>
+                                    <Chart
+                                        options={{
+                                            xaxis: {
+                                                categories: line_of_regression_data.x
+                                            }
+                                        }}
+                                        series={[
+                                            {
+                                                name: 'Line of Regression',
+                                                data: line_of_regression_data.y
+                                            }
+                                        ]}
+                                        type="line"
+                                        width="700"
+                                    />
                                 </div>
                             </div>
                         </div>
