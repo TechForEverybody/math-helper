@@ -82,13 +82,13 @@
 		margin: 10px;
 		.TableScrollbar{
 			width: 900px;
-			@media screen and (max-width: 768px) {
-				width: 360px;
-			}
 			overflow-x: scroll;
 			display: flex;
-			justify-content: center;
 			align-items: center;
+			@media screen and (max-width: 768px) {
+				width: 90vw;
+				justify-content: flex-start;
+			}
 			
 		}
 		table {

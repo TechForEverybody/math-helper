@@ -134,7 +134,9 @@ function SimpleLinearRegression(object) {
         })
         let l_x = [0], l_y = []
         l_y.push(intercept_)
-        let value = 10
+        let value = X.reduce((preValue,currentValue)=>{
+            return preValue<currentValue?currentValue:preValue
+        },Number.MIN_SAFE_INTEGER)
         l_x.push(value)
         l_y.push(slope_ * value + intercept_)
         update_line_of_regression_data({
@@ -359,7 +361,7 @@ function SimpleLinearRegression(object) {
                                             }
                                         ]}
                                         type="line"
-                                        width="700"
+                                        width={window.innerWidth<768?"350":"700"}
                                     />
                                 </div>
                                 <hr />
@@ -378,7 +380,7 @@ function SimpleLinearRegression(object) {
                                             }
                                         ]}
                                         type="line"
-                                        width="700"
+                                        width={window.innerWidth<768?"350":"700"}
                                     />
                                 </div>
                             </div>
